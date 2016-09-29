@@ -1,0 +1,1 @@
+{'users': {'user1': {'password': '254668kg', 'firstname': 'Tillo', 'lastname': 'Alimov', 'posts': {'post2': {'Title': 'Hi', 'text': 'It"s my second post'}, 'post1': {'Title': 'Hi', 'text': 'It"s my first post'}}, 'Name': 'alimovtillo'}, 'user2': {'password': '254668kg', 'firstname': 'Tillo', 'lastname': 'Alimov', 'Name': 'alimovtillo'}}}
