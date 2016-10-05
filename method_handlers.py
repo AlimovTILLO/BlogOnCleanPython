@@ -45,7 +45,7 @@ def handle_index(request):
 
 def post(request):
     user_id = DateAccess.DataAccessor.Users['1']
-    data = user_id
+    data = 'poka ego netu)))'
     post_id = DateAccess.DataAccessor.Posts['3']
     DateAccess.DataAccessor().insert(user_id=user_id, post_id=post_id, title=data['title'], text=data['text'])
     redirect(request, '/')
