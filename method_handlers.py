@@ -5,12 +5,8 @@ from data import DateAccess
 
 
 def handle_index(request):
-    f = open(settings.TEMPLATES_DIR + 'index.html')
-    read = f.read()
-    posts = DateAccess.DataAccessor().conn['users']['user1']['posts']
-    # html = template.Template(read).render(name=data[0][1], lname=data[0][2], username=data[0][3], posts=posts)
-    print(posts)
-
+    DateAccess.DataAccessor().initial()
+    posts = DateAccess.DataAccessor().Posts
     head = """<html>
                 <head><title>AlimovTILLO</title></head>
                 <body>"""
@@ -18,16 +14,35 @@ def handle_index(request):
     body = """</body>
                 </html>"""
 
+    All = """<br><br><br> %s """ % posts
     request.send_response(HTTPStatus.OK)
     request.send_header('Content-Type', 'text/html')
     request.end_headers()
     request.wfile.write(str.encode(head))
     for i in posts:
-        title = DateAccess.DataAccessor().conn['users']['user1']['posts']['%s' % i]['Title']
-        text = DateAccess.DataAccessor().conn['users']['user1']['posts']['%s' % i]['text']
+        title = posts['%s' % i]['Title']
+        text = posts['%s' % i]['Text']
         post = """%s %s <br>""" % (title, text)
         request.wfile.write(str.encode(post))
+    request.wfile.write(str.encode(All))
     request.wfile.write(str.encode(body))
+    return request
+
+
+def post(request):
+    DateAccess.DataAccessor().insert()
+    redirect(request, '/')
+    request.send_header('Content-Type', 'text/html')
+    request.end_headers()
+    return request
+
+
+def delete(request):
+
+    DateAccess.DataAccessor().delete()
+    redirect(request, '/')
+    request.send_header('Content-Type', 'text/html')
+    request.end_headers()
     return request
 
 

@@ -41,8 +41,11 @@ data = {'users': {'user1': {'password': '254668kg', 'firstname': 'Tillo', 'lastn
 for i in data:
     posts = data['users']['user1']['posts']
 
+data['users']['user1']['posts']['1'] = {'Title': 'Hi', 'text': 'It"s my another post'}
+
 for i in posts:
     title = data['users']['user1']['posts']['%s' % i]['Title']
     text = data['users']['user1']['posts']['%s' % i]['text']
     print(title, text)
+
 
